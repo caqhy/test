@@ -119,7 +119,7 @@ public class MyList {
 
         head = tailDeL(head);
         printList(head);
-        System.out.println();
+        //System.out.println();
 
         head = headDeL(head);
         printList(head);
