@@ -97,6 +97,21 @@ public class MyList {
     public static Node headDeL(Node head){
          return head.next;
     }
+    public static void printLastK(Node head, int k){
+        Node node = head;
+        Node bnode = head;
+        for(int i = 1;i < k;i++){
+            node = node.next;
+        }
+        while(node != null){
+            node = node.next;
+            if(node != null){
+                bnode = bnode.next;
+            }
+        }
+        System.out.println(bnode.data);
+
+    }
 
     public static void main(String[] args) {
         Node head = creatList();
@@ -123,6 +138,9 @@ public class MyList {
 
         head = headDeL(head);
         printList(head);
+        System.out.println();
+
+        printLastK(head, 8);
 
     }
 }
