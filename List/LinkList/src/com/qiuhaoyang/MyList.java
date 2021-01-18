@@ -75,7 +75,7 @@ public class MyList {
         return head;
 
     }
-    public static void find(Node head, int number){
+    public static void findByNum(Node head, int number){
         for(int i = number;i > 1; i--){
             head = head.next;
             if(head == null){
@@ -99,20 +99,42 @@ public class MyList {
     }
     public static void printLastK(Node head, int k){
         Node node = head;
-        Node bnode = head;
+        Node bNode = head;
         for(int i = 1;i < k;i++){
             node = node.next;
         }
         while(node != null){
             node = node.next;
             if(node != null){
-                bnode = bnode.next;
+                bNode = bNode.next;
             }
         }
-        System.out.println(bnode.data);
+        System.out.println(bNode.data);
+    }
+    public static void findMid(Node head){
+        Node node = head;
+        Node bNode = head;
+        while(node.next != null && node.next.next != null){
+            node = node.next.next;
+            bNode = bNode.next;
+        }
+        System.out.println(bNode.data);
+    }
+    public static void isCircleList(Node head){
+        Node stepOne = head;
+        Node stepTwo = head;
+        while(stepTwo != null && stepTwo.next != null){
+            stepTwo = stepTwo.next.next;
+            stepOne = stepOne.next;
+            if(stepOne == stepTwo){
+                System.out.println("链表成环");
+                return;
+            }
+        }
+        System.out.println("链表不成环");
+
 
     }
-
     public static void main(String[] args) {
         Node head = creatList();
         printList(head);
@@ -130,7 +152,7 @@ public class MyList {
         printList(head);
         System.out.println();
 
-        find(head, 3);
+        findByNum(head, 3);
 
         head = tailDeL(head);
         printList(head);
@@ -141,6 +163,9 @@ public class MyList {
         System.out.println();
 
         printLastK(head, 8);
+
+        findMid(head);
+        isCircleList(head);
 
     }
 }
