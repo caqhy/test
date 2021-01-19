@@ -101,7 +101,7 @@ public class MyList {
     public static Node headDeL(Node head){
          return head.next;
     }
-    //查找倒数第K个
+    //查找倒数第K个、、、
     public static void printLastK(Node head, int k){
         Node node = head;
         Node bNode = head;
