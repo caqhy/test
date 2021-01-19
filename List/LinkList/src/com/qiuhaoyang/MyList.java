@@ -1,6 +1,7 @@
 package com.qiuhaoyang;
 
 public class MyList {
+    //结点
     private static class Node{
         int data;
         Node next;
@@ -9,6 +10,7 @@ public class MyList {
             this.data = data;
         }
     }
+    //创建一个结点
     public static Node creatList(){
         Node head = new Node(0);
         Node node = head;
@@ -20,7 +22,7 @@ public class MyList {
         }
         return head;
     }
-
+    //区间反转链表
     public static Node reverseList(Node head, int begin, int end){
         Node beforeSection = null; //beforeSection为区间的第一个节点的，前一个节点
         Node eNode; //反转前,eNode为在反转区间的第一个节点，在反转后，是在反转区间的最后一个节点
@@ -51,21 +53,21 @@ public class MyList {
         eNode.next = nNode;
         return head;
     }
-
+    //打印链表
     public static void printList(Node head){
         while(head != null){
             System.out.print(head.data + "->");
             head = head.next;
         }
     }
-
+    //头插
     public static Node headInsert(Node head, int data){
         Node node = new Node(data);
         node.next = head;
         head = node;
         return head;
     }
-
+    //尾插
     public static Node tailInsert(Node head, int data){
         Node node = head;
         while(node.next != null){
@@ -75,6 +77,7 @@ public class MyList {
         return head;
 
     }
+    //查找
     public static void findByNum(Node head, int number){
         for(int i = number;i > 1; i--){
             head = head.next;
@@ -85,7 +88,7 @@ public class MyList {
         }
         System.out.println(head.data);
     }
-
+    //尾删
     public static Node tailDeL(Node head){
         Node node = head;
         while(node.next.next != null){
@@ -94,9 +97,11 @@ public class MyList {
         node.next = null;
         return head;
     }
+    //头删
     public static Node headDeL(Node head){
          return head.next;
     }
+    //查找倒数第K个
     public static void printLastK(Node head, int k){
         Node node = head;
         Node bNode = head;
@@ -111,6 +116,7 @@ public class MyList {
         }
         System.out.println(bNode.data);
     }
+    //找到并输出中间结点
     public static void findMid(Node head){
         Node node = head;
         Node bNode = head;
@@ -120,6 +126,7 @@ public class MyList {
         }
         System.out.println(bNode.data);
     }
+    //判断是否为环形链表
     public static void isCircleList(Node head){
         Node stepOne = head;
         Node stepTwo = head;
