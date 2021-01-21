@@ -2,14 +2,14 @@ package com.caqhy.pojo;
 
 public class User {
     private Integer id;
-    private String email;
     private String username;
     private String password;
+    private String email;
 
     public User() {
     }
 
-    public User(Integer id, String email, String username, String password) {
+    public User(Integer id, String username, String password,String email) {
         this.id = id;
         this.email = email;
         this.username = username;
