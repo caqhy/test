@@ -1,4 +1,4 @@
-package com.caqhy.dao;
+package com.caqhy.dao.impl;
 
 import com.caqhy.utils.JdbcUtils;
 
@@ -6,10 +6,7 @@ import com.caqhy.utils.JdbcUtils;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +18,7 @@ public abstract class BaseDao<T> {
         ParameterizedType paramType = (ParameterizedType) genericSuperclass;
 
         Type[] typeArguments = paramType.getActualTypeArguments();//获取了父类的泛型参数
-        clazz = (Class<T>) typeArguments[0];//泛型的第一个参数
+        clazz = (Class<T>)typeArguments[0];//泛型的第一个参数
     }
 
     // 通用的增删改操作---version 2.0 （考虑上事务）
@@ -47,7 +44,7 @@ public abstract class BaseDao<T> {
     }
 
     // 通用的查询操作，用于返回数据表中的一条记录（version 2.0：考虑上事务）
-    public T getInstance(Connection conn, String sql, Object... args) {
+    public T queryForOne(Connection conn, String sql, Object... args) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -92,7 +89,7 @@ public abstract class BaseDao<T> {
     }
 
     // 通用的查询操作，用于返回数据表中的多条记录构成的集合（version 2.0：考虑上事务）
-    public List<T> getForList(Connection conn, String sql, Object... args) {
+    public List<T> queryForList(Connection conn, String sql, Object... args) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -137,5 +134,30 @@ public abstract class BaseDao<T> {
         }
 
         return null;
+    }
+
+    //用于查询特殊值的通用的方法
+    public <E> E queryForSingleValue(Connection conn,String sql,Object...args){
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            for(int i = 0;i < args.length;i++){
+                ps.setObject(i + 1, args[i]);
+
+            }
+
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return (E) rs.getObject(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            JdbcUtils.closeResource(null, ps, rs);
+
+        }
+        return null;
+
     }
 }
