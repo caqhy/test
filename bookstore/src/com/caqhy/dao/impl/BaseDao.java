@@ -22,8 +22,7 @@ public abstract class BaseDao<T> {
     }
 
     // 通用的增删改操作---version 2.0 （考虑上事务）
-    public int update(String sql, Object... args) {// sql中占位符的个数与可变形参的长度相同！
-        Connection conn = JdbcUtils.getConnection();
+    public int update(Connection conn, String sql, Object... args) {// sql中占位符的个数与可变形参的长度相同！
         PreparedStatement ps = null;
         try {
             // 1.预编译sql语句，返回PreparedStatement的实例
@@ -45,8 +44,7 @@ public abstract class BaseDao<T> {
     }
 
     // 通用的查询操作，用于返回数据表中的一条记录（version 2.0：考虑上事务）
-    public T queryForOne( String sql, Object... args) {
-        Connection conn = JdbcUtils.getConnection();
+    public T queryForOne(Connection conn, String sql, Object... args) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -91,8 +89,7 @@ public abstract class BaseDao<T> {
     }
 
     // 通用的查询操作，用于返回数据表中的多条记录构成的集合（version 2.0：考虑上事务）
-    public List<T> queryForList( String sql, Object... args) {
-        Connection conn = JdbcUtils.getConnection();
+    public List<T> queryForList(Connection conn, String sql, Object... args) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -140,8 +137,7 @@ public abstract class BaseDao<T> {
     }
 
     //用于查询特殊值的通用的方法
-    public <E> E queryForSingleValue(String sql,Object...args){
-        Connection conn = JdbcUtils.getConnection();
+    public <E> E queryForSingleValue(Connection conn,String sql,Object...args){
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {

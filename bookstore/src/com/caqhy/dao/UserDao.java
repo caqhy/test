@@ -6,11 +6,11 @@ import java.sql.Connection;
 
 public interface UserDao {
 
-    User queryUserByUsername(String username);
+    User queryUserByUsername(Connection conn, String username);
 
 
-    User queryUserByUsernameAndPassword( String username, String password);
+    User queryUserByUsernameAndPassword(Connection conn, String username, String password);
 
 
-    int saveUser( User user);
+    int saveUser(Connection conn, User user);
 }
