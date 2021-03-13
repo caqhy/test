@@ -181,6 +181,7 @@ public class MyList {
         System.out.println("wo爱你");
         System.out.println("woxihuanni");
         System.out.println("gg");
+        System.out.println("sdaaassssss");
 
     }
 }
