@@ -177,8 +177,10 @@ public class MyList {
         System.out.println("asasasas");
         System.out.println("asasas");
         System.out.println("阿三十大");
-
+        System.out.println("asasasaddd");
+        System.out.println("wo爱你");
         System.out.println("woxihuanni");
+        System.out.println("gg");
 
     }
 }
