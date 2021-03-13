@@ -174,8 +174,9 @@ public class MyList {
         findMid(head);
         isCircleList(head);
 
-
-        System.out.println("我爱你啊啊啊");
+        System.out.println("asasasas");
+        System.out.println("asasas");
+        System.out.println("阿三十大");
 
     }
 }
